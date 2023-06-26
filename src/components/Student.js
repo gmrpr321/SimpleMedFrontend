@@ -52,6 +52,7 @@ const Student = () => {
           navigate("/student/form", { state: data2 });
         })
         .catch((error) => {
+          alert("Incorrect Username or password");
           console.log(error);
         });
       console.log(Application);
@@ -78,9 +79,9 @@ const Student = () => {
           navigate("/student/form", { state: { name: "Application" } });
         })
         .catch((error) => {
+          alert("Incorrect Username or password");
           console.log(error);
         });
-      console.log(Application);
     }
   };
   const [swap, setSwap] = useState("");

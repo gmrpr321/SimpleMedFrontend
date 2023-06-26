@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 const application_url = "http://127.0.0.1:8000/form/application-form-create/";
-
+var isclicked = false;
 const ApplicationForm = (props) => {
   const navigate = useNavigate();
   function sleep(milliseconds) {
@@ -162,11 +162,20 @@ const ApplicationForm = (props) => {
         mobile_3: formData.Mobile,
         guardian_mobile: formData.MobileLocal,
       });
-      sleep(2000);
-      axios.post(application_url, finalData).then(() => {
-        alert("Your response was submitted!!!");
-        navigate("/student");
-      });
+      sleep(3000);
+      axios
+        .post(application_url, finalData)
+        .then(() => {
+          alert("Your response was submitted!!!");
+          navigate("/student");
+        })
+        .catch(() => {
+          if (!isclicked) {
+            isclicked = true;
+            handleFormSubmit(e);
+          }
+          console.log("data");
+        });
       console.log(finalData);
     }
   };
